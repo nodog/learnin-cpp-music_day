@@ -1,0 +1,7 @@
+full chords same inv
+same direction arpeggio
+run (no invs)
+full chords diff inv
+up/down arpeggio
+full chords diff inv
+reverse direction arpeggio
