@@ -1,0 +1,10 @@
+triad
+aug
+dim
+sus4
+2nd
+4th
+6th
+7th
+dom7th
+9th

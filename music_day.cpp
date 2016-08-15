@@ -13,12 +13,8 @@ class MusicDay {
     std::vector<std::string> keys;
     std::vector<std::string> key_methods;
     std::vector<std::string> chord_methods;
-    const static int DirectionSize = 2;
-    const std::string directions[DirectionSize] = {"left", "right"};
-    const static int ChordTypeSize = 7;
-    const std::string chord_types[ChordTypeSize] =
-        {"triad", "2nd", "4th", "sus4", "6th", "7th", "9th"};
-
+    std::vector<std::string> directions;
+    std::vector<std::string> chord_types;
 
     int today;
     std::mt19937 rand_generator;
@@ -91,12 +87,17 @@ class MusicDay {
 
 	std::string chord_method_practice() {
         std::string describe_chord_method_practice;
+
         read_file_into_vector("music_day-chord_methods.txt", &chord_methods);
         std::string chord_method = choose_one_string(chord_methods);
         describe_chord_method_practice += "Today's chord method is " + chord_method + ".\n";
-        std::string direction = choose_one_string(directions, DirectionSize);
+
+        read_file_into_vector("music_day-directions.txt", &directions);
+        std::string direction = choose_one_string(directions);
         describe_chord_method_practice += "Today's chord start direction is " + direction + ".\n";
-        std::string chord_type = choose_one_string(chord_types, ChordTypeSize);
+
+        read_file_into_vector("music_day-chord_types.txt", &chord_types);
+        std::string chord_type = choose_one_string(chord_types);
         describe_chord_method_practice += "Today's chord type is " + chord_type + ".\n";
 
 		return describe_chord_method_practice;
