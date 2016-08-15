@@ -15,6 +15,8 @@ class MusicDay {
     std::vector<std::string> chord_methods;
     std::vector<std::string> directions;
     std::vector<std::string> chord_types;
+    std::vector<std::string> left_hand_methods;
+    std::vector<std::string> right_hand_methods;
 
     int today;
     std::mt19937 rand_generator;
@@ -103,6 +105,23 @@ class MusicDay {
 		return describe_chord_method_practice;
  	}
 
+	std::string hand_independence_practice() {
+        std::string describe_hand_independence_practice;
+
+        read_file_into_vector("music_day-left_hand.txt", &left_hand_methods);
+        std::string left_hand_method = choose_one_string(left_hand_methods);
+        describe_hand_independence_practice += "Play chords for the day (song or blues) or the circle of fifths these ways.\n";
+        describe_hand_independence_practice += "Today's left hand method is " + left_hand_method + ".\n";
+
+        read_file_into_vector("music_day-right_hand.txt", &right_hand_methods);
+        std::string right_hand_method = choose_one_string(right_hand_methods);
+        describe_hand_independence_practice += "Today's right hand method is " + right_hand_method + ".\n";
+
+		return describe_hand_independence_practice;
+ 	}
+
+
+
     public:
     MusicDay() {
         std::random_device rd;
@@ -116,6 +135,7 @@ class MusicDay {
         describe_practice += day_practice();
         describe_practice += key_practice();
         describe_practice += chord_method_practice();
+        describe_practice += hand_independence_practice();
         return describe_practice;
     }
 };
