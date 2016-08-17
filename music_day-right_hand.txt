@@ -1,10 +1,11 @@
 improv pentatonic
-repeat a chord up the keyboard through inversions
 improv a melodic theme
-repeat a chord up the keyboard through inversions with a straddle - leave out middle note
-repeat a vocal melody
-repeat a chord up the keyboard through inversions with a 2/1 breakup - alternate bottom note with top 2
 improv mostly within the chord
+improv blues - 1-3m-4-5b-5-7m
+play and improv the vocal melody
+play and improv the vocal melody with octave doubling
+repeat a chord up the keyboard through inversions
+repeat a chord up the keyboard through inversions with a straddle - leave out middle note
+repeat a chord up the keyboard through inversions with a 2/1 breakup - alternate bottom note with top 2
 repeat a chord up the keyboard through inversions with a 3/1 breakup - alternate bottom note with top 3
 make a run out of the chord
-improv blues - 1-3m-4-5b-5-7m
