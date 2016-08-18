@@ -5,6 +5,7 @@
 #include <vector>
 #include <random>
 #include <fstream>
+#include <sstream>
 #include <vector>
 //using namespace std;
 
@@ -50,22 +51,52 @@ class MusicDay {
         return choice;
     }
 
+    std::string read_file_into_string(std::string filename) {
+        std::string line;
+        std::ifstream file_stream(filename);
+        std::string string_of_file;
+        if (file_stream.is_open()) {
+            while (std::getline (file_stream, line)) {
+                string_of_file += line + "\n";
+            }
+            file_stream.close();
+        }
+        else {
+            std::cout << "Unable to open file";
+        }
+        file_stream.close();
+        return string_of_file;
+    }
+
     void read_file_into_vector(std::string filename, std::vector<std::string>* in_vector) {
+/*
+        auto string_of_file = read_file_into_string(filename);
+        std::stringstream stream_of_file(&string_of_file);
+        std::string line;
+        while (std::getline (string_of_file, line)) {
+            in_vector->push_back(line);
+        }
+        return;
+*/
         std::string line;
         std::ifstream file_stream(filename);
         if (file_stream.is_open())
-		{
-			while (std::getline (file_stream, line)) {
+        {
+            while (std::getline (file_stream, line)) {
                 in_vector->push_back(line);
-			}
-			file_stream.close();
-            //std::cout << std::to_string(keys.size()) << " keys.\n";
-		}
+            }
+            file_stream.close();
+        }
+        else {
+            std::cout << "Unable to open file";
+        }
+       file_stream.close();
+       return;
+    }
 
-    else std::cout << "Unable to open file";
-    file_stream.close();
-    return;
-}
+    std::string schedule() {
+      return read_file_into_string("music_day-schedule.txt");
+    }
 
     std::string key_practice() {
         std::string describe_key_practice;
@@ -132,6 +163,7 @@ class MusicDay {
 
     std::string describe() {
         std::string describe_practice;
+        describe_practice += schedule();
         describe_practice += day_practice();
         describe_practice += key_practice();
         describe_practice += chord_method_practice();
@@ -140,8 +172,7 @@ class MusicDay {
     }
 };
 
-int main()
-{
+int main() {
     MusicDay md;
     std::cout << md.describe();
     int doy;

@@ -1,0 +1,10 @@
+------------------------
+00 06 scale
+06 06 chord
+12 06 LH
+18 06 RH
+24 06 chord substitution
+30 10 ear training
+40 10 sight reading
+50 10 performance
+------------------------
