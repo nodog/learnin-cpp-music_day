@@ -6,8 +6,6 @@
 #include <random>
 #include <fstream>
 #include <sstream>
-#include <vector>
-//using namespace std;
 
 class MusicDay {
 
@@ -33,8 +31,20 @@ class MusicDay {
         }
     }
 
-    std::string day_practice() {
-        return "Today is day " + std::to_string(today) + " of the year.\n";
+    int calc_year() {
+        std::locale::global(std::locale("en_US.UTF-8"));
+        std::time_t t = std::time(NULL);
+        char mbstr[100];
+        if (std::strftime(mbstr, sizeof(mbstr), "%Y", std::localtime(&t))) {
+            return std::stoi(mbstr);
+        } else {
+            return 0;
+        }
+    }
+
+    std::string day_practice(int today, int this_year, int this_seed) {
+        return "Today is day " + std::to_string(today) + " of the year " + std::to_string(this_year)
+            + ", so the rand seed is " + std::to_string(this_seed) + ".\n";
     }
 
     std::string choose_one_string(const std::string choices[], int array_size) {
@@ -69,29 +79,13 @@ class MusicDay {
     }
 
     void read_file_into_vector(std::string filename, std::vector<std::string>* in_vector) {
-/*
         auto string_of_file = read_file_into_string(filename);
-        std::stringstream stream_of_file(&string_of_file);
+        std::istringstream stream_of_file(string_of_file);
         std::string line;
-        while (std::getline (string_of_file, line)) {
+        while (std::getline(stream_of_file, line)) {
             in_vector->push_back(line);
         }
         return;
-*/
-        std::string line;
-        std::ifstream file_stream(filename);
-        if (file_stream.is_open())
-        {
-            while (std::getline (file_stream, line)) {
-                in_vector->push_back(line);
-            }
-            file_stream.close();
-        }
-        else {
-            std::cout << "Unable to open file";
-        }
-       file_stream.close();
-       return;
     }
 
     std::string schedule() {
@@ -151,20 +145,19 @@ class MusicDay {
 		return describe_hand_independence_practice;
  	}
 
-
-
     public:
     MusicDay() {
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        rand_generator = gen;
-        today = calc_day_of_year();
     }
 
     std::string describe() {
+        auto today = calc_day_of_year();
+        auto this_year = calc_year();
+        auto this_seed = this_year*1000 + today;
+        std::srand(this_seed);
+
         std::string describe_practice;
         describe_practice += schedule();
-        describe_practice += day_practice();
+        describe_practice += day_practice(today, this_year, this_seed);
         describe_practice += key_practice();
         describe_practice += chord_method_practice();
         describe_practice += hand_independence_practice();
@@ -175,11 +168,4 @@ class MusicDay {
 int main() {
     MusicDay md;
     std::cout << md.describe();
-    int doy;
-    std::vector<std::string> scale_method {"two octave blind", "contrary motion", "Hanon"};
-    std::vector<std::string> broken_chord_direction {"right", "left"};
-    //if ((doy = day_of_year()) > 0) {
-    //    std::cout << "day of year = " << doy << '\n';
-    //    std::cout << "You should practice scales with " << scale_method[doy % scale_method.size()] << ".\n";
-    //    std::cout << "You should advance broken chords to the " << broken_chord_direction[doy % broken_chord_direction.size()] << ".\n";
 }
