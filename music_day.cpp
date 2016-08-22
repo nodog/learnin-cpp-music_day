@@ -17,7 +17,6 @@ class MusicDay {
     std::vector<std::string> left_hand_methods;
     std::vector<std::string> right_hand_methods;
 
-    int today;
     std::mt19937 rand_generator;
 
     int calc_day_of_year() {
@@ -153,7 +152,9 @@ class MusicDay {
         auto today = calc_day_of_year();
         auto this_year = calc_year();
         auto this_seed = this_year*1000 + today;
-        std::srand(this_seed);
+        std::mt19937 gen;
+        gen.seed(this_seed);
+        rand_generator = gen;
 
         std::string describe_practice;
         describe_practice += schedule();
