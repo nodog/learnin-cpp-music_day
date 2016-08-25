@@ -10,7 +10,8 @@
 class MusicDay {
 
     std::vector<std::string> keys;
-    std::vector<std::string> key_methods;
+    std::vector<std::string> scale_methods;
+    std::vector<std::string> scale_articulations;
     std::vector<std::string> chord_methods;
     std::vector<std::string> directions;
     std::vector<std::string> chord_types;
@@ -96,17 +97,25 @@ class MusicDay {
 
         read_file_into_vector("music_day-keys.txt", &keys);
         std::string day_key = choose_one_string(keys);
-        describe_key_practice += "Today's practice key is " + day_key + ".\n";
+        describe_key_practice += day_key + "   is today's practice key.\n";
 
-        read_file_into_vector("music_day-key_methods.txt", &key_methods);
-        std::string key_method = choose_one_string(key_methods);
-        describe_key_practice += "Today's key practice method is " + key_method;
-        if (key_method == key_methods[0]) {
+        read_file_into_vector("music_day-scale_methods.txt", &scale_methods);
+        std::string scale_method = choose_one_string(scale_methods);
+        describe_key_practice +=  scale_method + "   is today's scale method";
+        if (scale_method == scale_methods[0]) {
             std::uniform_int_distribution<> dis(1, 6);
             int hanon_index = dis(rand_generator);
             describe_key_practice += " " + std::to_string(hanon_index);
         }
         describe_key_practice += ".\n";
+
+        std::cout << "happiness\n";
+
+        read_file_into_vector("music_day-scale_articulations.txt", &scale_articulations);
+        std::string scale_articulation = choose_one_string(scale_articulations);
+        describe_key_practice +=  scale_articulation + "   is today's scale articulation.\n";
+        
+        std::cout << "sadness\n";
 
         return describe_key_practice;
     }
