@@ -98,7 +98,7 @@ std::string MusicDay::chord_method_practice() {
 
     read_file_into_vector("music_day-chord_types.txt", &chord_types);
     std::string chord_type = choose_one_string(chord_types);
-    describe_chord_method_practice += chord_type + "  is today's chord type.\n";
+    describe_chord_method_practice += chord_type + "   is today's chord type.\n";
 
     return describe_chord_method_practice;
 }
