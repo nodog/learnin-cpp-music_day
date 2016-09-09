@@ -29,6 +29,5 @@ class MusicDay {
 
     public:
     MusicDay();
-
     std::string describe();
 };
