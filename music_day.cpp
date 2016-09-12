@@ -32,7 +32,7 @@ std::string MusicDay::choose_one_string(std::vector<std::string> choices) {
 
 std::string MusicDay::read_file_into_string(std::string filename) {
     std::string line;
-    std::ifstream file_stream(filename);
+    std::ifstream file_stream("music_day_files/" + filename);
     std::string string_of_file;
     if (file_stream.is_open()) {
         while (std::getline (file_stream, line)) {
