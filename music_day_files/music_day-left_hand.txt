@@ -4,6 +4,7 @@ on LH use Alberti bass -- bottom, top, middle, top - any inversion
 on LH play swing bass - pinky low 8vb root, followed by chord - any inversion
 on LH play alternating swing bass - swing bass, but alternate b/w root and 5th w/pinky
 on LH play arpeggios - root, 5th, 3rd-8va, 5th
+on LH play arpeggios - root, 5th, 3rd-8va, 5th, 2nd-8va, 5th
 on LH play arpeggiated 6th chord - break up with root, 5th, 6th, 5th
 on LH play the broken chord pattern - root + 5th, m3rd, 3rd
 on LH play broken 6th chord - root, 6th, 5th, 6th
